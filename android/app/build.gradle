@@ -64,4 +64,8 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    implementation "org.tensorflow:tensorflow-lite:2.12.0"
+    implementation files('libs/tensorflow-lite-select-tf-ops.aar')
+}
