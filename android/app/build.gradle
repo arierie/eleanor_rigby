@@ -45,8 +45,8 @@ android {
         applicationId "com.example.eleanor_rigby"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -68,4 +68,6 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
     implementation "org.tensorflow:tensorflow-lite:2.12.0"
     implementation files('libs/tensorflow-lite-select-tf-ops.aar')
+    implementation "io.github.aakira:napier:2.6.1"
+    implementation "com.github.mediamonks:AndroidWordFilter:1.0.3"
 }
