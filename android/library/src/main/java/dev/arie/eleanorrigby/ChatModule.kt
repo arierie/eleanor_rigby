@@ -46,10 +46,9 @@ class ChatModule {
     }
 
     fun prefill(input: String?) {
-        val systemPrompt = "You are an AI song writer, your responsible is to auto complete sentence of based on the input that will become a song lyrics. " +
-                "Be concise, the completed lyrics should not be longer than 40 words" +
-                "INSTRUCT: complete the following sentence: "
-        val prompt = systemPrompt + input
+        val systemPrompt = "Instruct:You are an AI song writer, your responsible is to auto complete sentence of based on the input that will become a song lyrics. Be concise, the completed lyrics should not be longer than 40 words. Start with completing the following sentence:"
+        val outputPrompt = "Output:"
+        val prompt = "$systemPrompt$input\n$outputPrompt"
         prefillFunc.pushArg(prompt).invoke()
     }
 

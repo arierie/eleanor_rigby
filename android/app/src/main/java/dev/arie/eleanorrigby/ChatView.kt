@@ -50,9 +50,7 @@ import kotlinx.coroutines.launch
 
 @ExperimentalMaterial3Api
 @Composable
-fun ChatView(
-    navController: NavController, chatState: AppViewModel.ChatState
-) {
+fun ChatView(chatState: AppViewModel.ChatState) {
     val localFocusManager = LocalFocusManager.current
     Scaffold(topBar = {
         TopAppBar(
@@ -65,7 +63,9 @@ fun ChatView(
             colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
             navigationIcon = {
                 IconButton(
-                    onClick = { navController.popBackStack() },
+                    onClick = {
+
+                    },
                     enabled = chatState.interruptable()
                 ) {
                     Icon(
