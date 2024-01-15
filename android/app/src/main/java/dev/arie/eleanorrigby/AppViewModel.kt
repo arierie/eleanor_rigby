@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -150,6 +151,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     inner class ChatState {
+        val title = mutableStateOf("")
+        val content = mutableStateOf("")
         val messages = emptyList<MessageData>().toMutableStateList()
         val report = mutableStateOf("")
         val modelName = mutableStateOf("")
@@ -272,14 +275,14 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             this.modelPath = modelPath
             executorService.submit {
                 viewModelScope.launch {
-                    Toast.makeText(application, "Initialize...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(application, "Starting a new session...", Toast.LENGTH_SHORT).show()
                 }
                 if (!callBackend {
                         backend.unload()
                         backend.reload(modelLib, modelPath)
                     }) return@submit
                 viewModelScope.launch {
-                    Toast.makeText(application, "Ready to chat", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(application, "Ready to generate lyrics!", Toast.LENGTH_SHORT).show()
                     switchToReady()
                 }
             }
@@ -301,11 +304,14 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                     return@submit
                 }
 
-                while (!backend.stopped() && !backend.message.contains("Instruct")) {
+                while (!backend.stopped() && !backend.message.contains("\nInst")) {
                     val requestTwo = callBackend {
                         backend.decode()
                         Log.e("Arie-Log: ", "backend.decode(): ${backend.message}")
-                        viewModelScope.launch { updateMessage(MessageRole.Bot, backend.message) }
+                        viewModelScope.launch {
+                            updateMessage(MessageRole.Bot, backend.message)
+                            content.value = backend.message
+                        }
                     }
 
                     if (!requestTwo) {
