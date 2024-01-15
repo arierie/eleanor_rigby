@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun SketchScreen(
     state: AppViewModel.ChatState,
-    noteColor: Color,
     startSession: () -> Unit,
     generateLyrics: (input: String) -> Unit
 ) {
@@ -46,7 +45,7 @@ fun SketchScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = noteColor,
+                    containerColor = Color(0xFFF5D39E),
                     titleContentColor = Color.Black
                 ),
                 title = {
@@ -78,11 +77,11 @@ fun SketchScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(noteColor)
+                .background(Color(color = 0xFFFFE0AE))
                 .padding(
                     start = 16.dp,
                     end = 16.dp,
-                    top = innerPadding.calculateTopPadding() + 16.dp,
+                    top = innerPadding.calculateTopPadding() + 8.dp,
                     bottom = innerPadding.calculateBottomPadding()
                 )
         ) {

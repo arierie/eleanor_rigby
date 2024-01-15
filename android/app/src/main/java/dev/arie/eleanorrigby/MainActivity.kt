@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
             Surface(modifier = Modifier.fillMaxSize()) {
                 SketchScreen(
                     state = viewModel.chatState,
-                    noteColor = Color(color = 0xFFFFE0AE),
                     startSession = {
                         viewModel.modelList.first().startChat()
                     },

@@ -13,9 +13,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/mlc_logo_108"
+        android:icon="@drawable/ic_eleanor_rigby"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/mlc_logo_108"
+        android:roundIcon="@drawable/ic_eleanor_rigby"
         android:supportsRtl="true"
         android:theme="@style/Theme.MLCChat"
         tools:targetApi="31">
