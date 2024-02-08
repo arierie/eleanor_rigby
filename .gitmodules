@@ -10,9 +10,9 @@
 [submodule "3rdparty/tokenizers-cpp"]
 	path = 3rdparty/tokenizers-cpp
 	url = https://github.com/mlc-ai/tokenizers-cpp
-[submodule "dist/models/phi_2-finetuned-lyrics"]
-	path = dist/models/phi_2-finetuned-lyrics
-	url = https://huggingface.co/arieridwans/phi_2-finetuned-lyrics
 [submodule "tvm"]
 	path = 3rdparty/tvm
 	url = https://github.com/mlc-ai/relax.git
+[submodule "dist/models/phi_2-finetuned-lyrics"]
+	path = dist/models/phi_2-finetuned-lyrics
+	url = https://huggingface.co/arieridwans/phi_2-finetuned-lyrics
