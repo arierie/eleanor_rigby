@@ -10,7 +10,7 @@ st.title('Eleanor Rigby: The Beatles-inspired lyrics generation')
 with st.sidebar:
     replicate_api = st.secrets['REPLICATE_API_TOKEN']
     st.subheader('Parameters')
-    max_token = st.sidebar.slider('max_length', min_value=128, max_value=1028, value=512, step=8)
+    max_token = st.sidebar.slider('max_token', min_value=128, max_value=1028, value=512, step=8)
 
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
