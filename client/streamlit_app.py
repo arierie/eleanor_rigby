@@ -30,7 +30,8 @@ def generate_llama2_response(prompt_input):
     output = replicate.run('arierie/phi_2-finetuned-lyrics:48a60dd8d863735436eed0a6ff3b108d84fd333321c75441c57ac6a7cd75dbeb', 
                            input={"user_prompt": prompt_input,
                                   "max_new_tokens": max_token})
-    return output
+    output_text = output.split("Output:")[1].strip()
+    return output_text
 
 # User-provided prompt
 if prompt := st.chat_input(disabled=not replicate_api):
