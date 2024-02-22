@@ -22,7 +22,7 @@ for message in st.session_state.messages:
         st.write(message["content"])
 
 def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Input a prompt that can be song lyrics e.g. 'yesterday, i saw you in my dream'"}]
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
 # Function for generating LLM response
