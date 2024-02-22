@@ -10,7 +10,6 @@ st.title('Eleanor Rigby: The Beatles-inspired lyrics generation')
 with st.sidebar:
     replicate_api = st.secrets['REPLICATE_API_TOKEN']
     st.subheader('Parameters')
-    llm = 'https://replicate.com/arierie/phi_2-finetuned-lyrics:48a60dd8d863735436eed0a6ff3b108d84fd333321c75441c57ac6a7cd75dbeb'
     max_token = st.sidebar.slider('max_length', min_value=128, max_value=1028, value=512, step=8)
 
 # Store LLM generated responses
@@ -26,16 +25,10 @@ def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
-# Function for generating LLaMA2 response. Refactored from https://github.com/a16z-infra/llama2-chatbot
+# Function for generating LLM response
 def generate_llama2_response(prompt_input):
-    string_dialogue = "You are a helpful assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assistant'."
-    for dict_message in st.session_state.messages:
-        if dict_message["role"] == "user":
-            string_dialogue += "User: " + dict_message["content"] + "\n\n"
-        else:
-            string_dialogue += "Assistant: " + dict_message["content"] + "\n\n"
     output = replicate.run('arierie/phi_2-finetuned-lyrics:48a60dd8d863735436eed0a6ff3b108d84fd333321c75441c57ac6a7cd75dbeb', 
-                           input={"user_prompt": "{prompt_input}",
+                           input={"user_prompt": prompt_input,
                                   "max_new_tokens": max_token})
     return output
 
